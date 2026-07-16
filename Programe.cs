@@ -13,7 +13,8 @@ namespace ZooManagementSystem
             Console.WriteLine();
             Console.WriteLine("1. Add Animal");
             Console.WriteLine("2. Display Animals");
-            Console.WriteLine("3. Exit");
+            Console.WriteLine("3. Search Animal");
+            Console.WriteLine("4. Exit");
             Console.WriteLine();
         }
 
@@ -56,7 +57,40 @@ namespace ZooManagementSystem
                 Console.WriteLine($"Animal Id   : {animal.Id}");
                 Console.WriteLine($"Animal Name : {animal.Name}");
                 Console.WriteLine($"Animal Age  : {animal.Age}");
-                Console.WriteLine(new string('-',35));
+                Console.WriteLine(new string('-', 35));
+            }
+        }
+
+        static void SearchAnimal()
+        {
+            Console.Write("Enter Animal Id: ");
+            int id = Convert.ToInt32(Console.ReadLine());
+
+            bool found = false;
+
+            foreach (Animal animal in animals)
+            {
+                if (animal.Id == id)
+                {
+                    found = true;
+
+                    Console.WriteLine();
+                    Console.WriteLine("Animal Found!");
+                    Console.WriteLine();
+                    Console.WriteLine("========== Animal Details ==========");
+                    Console.WriteLine();
+                    Console.WriteLine($"Animal Id   : {animal.Id}");
+                    Console.WriteLine($"Animal Name : {animal.Name}");
+                    Console.WriteLine($"Animal Age  : {animal.Age}");
+
+                    break;
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Animal Not Found!");
             }
         }
 
@@ -84,6 +118,10 @@ namespace ZooManagementSystem
                         break;
 
                     case 3:
+                        SearchAnimal();
+                        break;
+
+                    case 4:
                         Console.WriteLine("Thank You for Using Zoo Management System!");
                         return;
 
