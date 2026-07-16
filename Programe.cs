@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 
 namespace ZooManagementSystem
@@ -6,6 +7,8 @@ namespace ZooManagementSystem
     internal class Program
     {
         static List<Animal> animals = new List<Animal>();
+
+        static string filePath = "Animal.txt";
 
         static void ShowMenu()
         {
@@ -20,25 +23,85 @@ namespace ZooManagementSystem
 
         static void AddAnimal()
         {
-            Console.Write("Enter Animal Id: ");
-            int id = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                Console.Write("Enter Animal Id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("Enter Animal Name: ");
-            string name = Console.ReadLine();
+                Console.Write("Enter Animal Name: ");
+                string name = Console.ReadLine() ?? "";
 
-            Console.Write("Enter Animal Age: ");
-            int age = Convert.ToInt32(Console.ReadLine());
+                Console.Write("Enter Animal Age: ");
+                int age = Convert.ToInt32(Console.ReadLine());
 
-            Animal animal = new Animal();
+                Animal animal = new Animal()
+                {
+                    Id = id,
+                    Name = name,
+                    Age = age
+                };
 
-            animal.Id = id;
-            animal.Name = name;
-            animal.Age = age;
+                animals.Add(animal);
 
-            animals.Add(animal);
+                SaveAnimalToFile(animal);
 
-            Console.WriteLine();
-            Console.WriteLine("Animal Added Successfully!");
+                Console.WriteLine();
+                Console.WriteLine("Animal Added Successfully!");
+            }
+            catch (FormatException)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Invalid input. Please enter a valid number.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Something went wrong: " + ex.Message);
+            }
+        }
+
+        static void SaveAnimalToFile(Animal animal)
+        {
+            try
+            {
+                string data = $"{animal.Id},{animal.Name},{animal.Age}";
+                File.AppendAllText(filePath, data + Environment.NewLine);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("File Error: " + ex.Message);
+            }
+        }
+
+        static void LoadAnimalsFromFile()
+        {
+            try
+            {
+                animals.Clear();
+
+                if (File.Exists(filePath))
+                {
+                    string[] lines = File.ReadAllLines(filePath);
+
+                    foreach (string line in lines)
+                    {
+                        string[] data = line.Split(',');
+
+                        Animal animal = new Animal()
+                        {
+                            Id = Convert.ToInt32(data[0]),
+                            Name = data[1],
+                            Age = Convert.ToInt32(data[2])
+                        };
+
+                        animals.Add(animal);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("File Loading Error: " + ex.Message);
+            }
         }
 
         static void DisplayAnimals()
@@ -63,71 +126,95 @@ namespace ZooManagementSystem
 
         static void SearchAnimal()
         {
-            Console.Write("Enter Animal Id: ");
-            int id = Convert.ToInt32(Console.ReadLine());
-
-            bool found = false;
-
-            foreach (Animal animal in animals)
+            try
             {
-                if (animal.Id == id)
+                Console.Write("Enter Animal Id: ");
+                int id = Convert.ToInt32(Console.ReadLine());
+
+                bool found = false;
+
+                foreach (Animal animal in animals)
                 {
-                    found = true;
+                    if (animal.Id == id)
+                    {
+                        found = true;
 
-                    Console.WriteLine();
-                    Console.WriteLine("Animal Found!");
-                    Console.WriteLine();
-                    Console.WriteLine("========== Animal Details ==========");
-                    Console.WriteLine();
-                    Console.WriteLine($"Animal Id   : {animal.Id}");
-                    Console.WriteLine($"Animal Name : {animal.Name}");
-                    Console.WriteLine($"Animal Age  : {animal.Age}");
+                        Console.WriteLine();
+                        Console.WriteLine("Animal Found!");
+                        Console.WriteLine();
+                        Console.WriteLine("========== Animal Details ==========");
+                        Console.WriteLine();
+                        Console.WriteLine($"Animal Id   : {animal.Id}");
+                        Console.WriteLine($"Animal Name : {animal.Name}");
+                        Console.WriteLine($"Animal Age  : {animal.Age}");
 
-                    break;
+                        break;
+                    }
+                }
+
+                if (!found)
+                {
+                    Console.WriteLine();
+                    Console.WriteLine("Animal Not Found!");
                 }
             }
-
-            if (!found)
+            catch (FormatException)
             {
-                Console.WriteLine();
-                Console.WriteLine("Animal Not Found!");
+                Console.WriteLine("Please enter a valid Animal Id.");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
             }
         }
 
         static void Main(string[] args)
         {
+            LoadAnimalsFromFile();
+
             while (true)
             {
                 Console.Clear();
 
                 ShowMenu();
 
-                Console.Write("Enter Choice: ");
-                int choice = Convert.ToInt32(Console.ReadLine());
-
-                Console.WriteLine();
-
-                switch (choice)
+                try
                 {
-                    case 1:
-                        AddAnimal();
-                        break;
+                    Console.Write("Enter Choice: ");
+                    int choice = Convert.ToInt32(Console.ReadLine());
 
-                    case 2:
-                        DisplayAnimals();
-                        break;
+                    Console.WriteLine();
 
-                    case 3:
-                        SearchAnimal();
-                        break;
+                    switch (choice)
+                    {
+                        case 1:
+                            AddAnimal();
+                            break;
 
-                    case 4:
-                        Console.WriteLine("Thank You for Using Zoo Management System!");
-                        return;
+                        case 2:
+                            DisplayAnimals();
+                            break;
 
-                    default:
-                        Console.WriteLine("Invalid Choice!");
-                        break;
+                        case 3:
+                            SearchAnimal();
+                            break;
+
+                        case 4:
+                            Console.WriteLine("Thank You for Using Zoo Management System!");
+                            return;
+
+                        default:
+                            Console.WriteLine("Invalid Choice!");
+                            break;
+                    }
+                }
+                catch (FormatException)
+                {
+                    Console.WriteLine("Please enter menu number only.");
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine("Error: " + ex.Message);
                 }
 
                 Console.WriteLine();
