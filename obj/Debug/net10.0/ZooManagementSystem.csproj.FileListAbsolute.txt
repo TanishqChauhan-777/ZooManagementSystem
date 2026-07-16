@@ -1,0 +1,15 @@
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.AssemblyInfoInputs.cache
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.AssemblyInfo.cs
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.csproj.CoreCompileInputs.cache
+C:\Users\himan\source\repos\ZooManagementSystem\bin\Debug\net10.0\ZooManagementSystem.exe
+C:\Users\himan\source\repos\ZooManagementSystem\bin\Debug\net10.0\ZooManagementSystem.deps.json
+C:\Users\himan\source\repos\ZooManagementSystem\bin\Debug\net10.0\ZooManagementSystem.runtimeconfig.json
+C:\Users\himan\source\repos\ZooManagementSystem\bin\Debug\net10.0\ZooManagementSystem.dll
+C:\Users\himan\source\repos\ZooManagementSystem\bin\Debug\net10.0\ZooManagementSystem.pdb
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.dll
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\refint\ZooManagementSystem.dll
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.pdb
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.genruntimeconfig.cache
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ref\ZooManagementSystem.dll
+C:\Users\himan\source\repos\ZooManagementSystem\obj\Debug\net10.0\ZooManagementSystem.sourcelink.json
