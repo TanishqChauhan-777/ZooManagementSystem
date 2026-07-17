@@ -16,16 +16,12 @@ namespace ZooManagementSystem
 
         public void AddAnimal()
         {
-            try
-            {
-                Console.Write("Enter Animal Id: ");
-                int id = Convert.ToInt32(Console.ReadLine());
 
-                Console.Write("Enter Animal Name: ");
-                string name = Console.ReadLine() ?? "";
+            int id = InputHelper.ReadInt("Enter Animal Id: ");
 
-                Console.Write("Enter Animal Age: ");
-                int age = Convert.ToInt32(Console.ReadLine());
+            string name = InputHelper.ReadString("Enter Animal name:");
+
+            int age = InputHelper.ReadInt("Enter Animal Age:");
 
                 Animal animal = new Animal()
                 {
@@ -40,15 +36,7 @@ namespace ZooManagementSystem
 
                 Console.WriteLine();
                 Console.WriteLine("Animal Added Successfully!");
-            }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid Input.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            
         }
         private void SaveAnimalToFile(Animal animal)
         {
@@ -132,12 +120,10 @@ namespace ZooManagementSystem
         }
         public void SearchAnimal()
         {
-            try
-            {
-                Console.Write("Enter Animal Id: ");
-                int id = Convert.ToInt32(Console.ReadLine());
 
-                bool found = false;
+            int id = InputHelper.ReadInt("Enter Animal Id: ");
+
+            bool found = false;
 
                 foreach (Animal animal in animals)
                 {
@@ -164,21 +150,12 @@ namespace ZooManagementSystem
                     Console.WriteLine("Animal Not Found!");
                 }
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("Please enter a valid Animal Id.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-        }
+            
+        
         public void UpdateAnimal()
         {
-            try
-            {
-                Console.Write("Enter Animal Id you want to Update: ");
-                int id = Convert.ToInt32(Console.ReadLine());
+            
+                int id = InputHelper.ReadInt("Enter Animal ypur want to Update: ");
 
                 bool found = false;
 
@@ -188,13 +165,11 @@ namespace ZooManagementSystem
                     {
                         found = true;
 
-                        Console.Write("Enter New Name: ");
-                        string newName = Console.ReadLine() ?? "";
+                    string newName = InputHelper.ReadString("Enter New Name: ");
 
-                        Console.Write("Enter New Age: ");
-                        int newAge = Convert.ToInt32(Console.ReadLine());
+                    int newAge = InputHelper.ReadInt("Enter New Age: ");
 
-                        animal.Name = newName;
+                    animal.Name = newName;
                         animal.Age = newAge;
 
                         SaveAllAnimalsToFile();
@@ -212,24 +187,13 @@ namespace ZooManagementSystem
                     Console.WriteLine("Animal Not Found!");
                 }
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid Input.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
-        }
-
+     
         public void DeleteAnimal()
         {
-            try
-            {
-                Console.Write("Enter Animal Id you want to Delete: ");
-                int id = Convert.ToInt32(Console.ReadLine());
 
-                Animal animalToDelete = null;
+            int id = InputHelper.ReadInt("Enter Animal Id you want to Delete: ");
+
+            Animal animalToDelete = null;
 
                 foreach (Animal animal in animals)
                 {
@@ -255,15 +219,8 @@ namespace ZooManagementSystem
                     Console.WriteLine("Animal Not Found!");
                 }
             }
-            catch (FormatException)
-            {
-                Console.WriteLine("Invalid Input.");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("Error: " + ex.Message);
-            }
+           
         }
     }
     
-    }
+    

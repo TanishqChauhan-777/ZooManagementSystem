@@ -6,9 +6,6 @@ namespace ZooManagementSystem
 {
     internal class Program
     {
-
-
-
         static void ShowMenu()
         {
             Console.WriteLine("========== Zoo Management System ==========");
@@ -20,8 +17,7 @@ namespace ZooManagementSystem
             Console.WriteLine("5. Delete Animal");
             Console.WriteLine("6. Exit");
             Console.WriteLine();
-        }
-
+            }
 
 
         static void Main(string[] args)
