@@ -19,6 +19,18 @@ namespace ZooManagementSystem
             Console.WriteLine();
             }
 
+        static void ShowSearchMenu()
+        {
+
+            Console.WriteLine("========== Search Animal ==========");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Find Animal By Id ");
+            Console.WriteLine("2. Find Animal By Name");
+            Console.WriteLine("3. Back");
+            Console.WriteLine();
+        }
+
 
         static void Main(string[] args)
         {
@@ -31,12 +43,8 @@ namespace ZooManagementSystem
                 Console.Clear();
 
                 ShowMenu();
-
-                try
-                {
-                    Console.Write("Enter Choice: ");
-                    int choice = Convert.ToInt32(Console.ReadLine());
-
+ 
+                    int choice = InputHelper.ReadInt("Enter Choice :");
                     Console.WriteLine();
 
                     switch (choice)
@@ -50,7 +58,22 @@ namespace ZooManagementSystem
                             break;
 
                         case 3:
-                            manager.SearchAnimal();
+                        ShowSearchMenu();
+
+                        int searchChoice = InputHelper.ReadInt("Enter Choice :");
+
+                        switch (searchChoice)
+                        {
+                            case 1:
+                                manager.SearchAnimalByID();
+                                break;
+
+                            case 2:
+                                manager.SearchAnimalbyName();
+                                break;
+
+                        }
+                        
                             break;
 
                         case 4:
@@ -69,16 +92,9 @@ namespace ZooManagementSystem
                             Console.WriteLine("Invalid Choice!");
                             break;
                     }
-                }
-                catch (FormatException)
-                {
-                    Console.WriteLine("Please enter menu number only.");
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine("Error: " + ex.Message);
-                }
-
+                
+            
+             
                 Console.WriteLine();
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();

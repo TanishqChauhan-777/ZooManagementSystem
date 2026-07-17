@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Security.Cryptography.X509Certificates;
 
 namespace ZooManagementSystem
 {
@@ -10,34 +11,56 @@ namespace ZooManagementSystem
 
         private string filePath = "Animal.txt";
 
-
-
-
-
         public void AddAnimal()
         {
-
             int id = InputHelper.ReadInt("Enter Animal Id: ");
 
-            string name = InputHelper.ReadString("Enter Animal name:");
+            bool found = false;
 
-            int age = InputHelper.ReadInt("Enter Animal Age:");
-
-                Animal animal = new Animal()
+            foreach (Animal animal in animals)
+            {
+                if (animal.Id == id)
                 {
-                    Id = id,
-                    Name = name,
-                    Age = age
-                };
+                    found = true;
+                    break;
+                }
+            }
 
-                animals.Add(animal);
+            if (found)
+            {
+                Console.WriteLine("Animal Id already exists! Please enter a unique Id.");
+                return;
+            }
 
-                SaveAnimalToFile(animal);
+            string name = InputHelper.ReadString("Enter Animal Name: ");
 
-                Console.WriteLine();
-                Console.WriteLine("Animal Added Successfully!");
-            
+            int age;
+            do
+            {
+                 age = InputHelper.ReadInt("Enter Animal Age: ");
+
+                if (age < 0 || age > 100)
+                {
+
+                    Console.WriteLine("Enter a Valid Age");
+                }
+            } while (age < 0 || age > 100);
+
+            Animal animalData = new Animal()
+            {
+                Id = id,
+                Name = name,
+                Age = age
+            };
+
+            animals.Add(animalData);
+
+            SaveAnimalToFile(animalData);
+
+            Console.WriteLine();
+            Console.WriteLine("Animal Added Successfully!");
         }
+
         private void SaveAnimalToFile(Animal animal)
         {
             try
@@ -118,44 +141,77 @@ namespace ZooManagementSystem
                 Console.WriteLine(new string('-', 35));
             }
         }
-        public void SearchAnimal()
+        public void SearchAnimalByID()
         {
 
             int id = InputHelper.ReadInt("Enter Animal Id: ");
 
             bool found = false;
 
-                foreach (Animal animal in animals)
+            foreach (Animal animal in animals)
+            {
+                if (animal.Id == id)
                 {
-                    if (animal.Id == id)
-                    {
-                        found = true;
+                    found = true;
 
-                        Console.WriteLine();
-                        Console.WriteLine("Animal Found!");
-                        Console.WriteLine();
-                        Console.WriteLine("========== Animal Details ==========");
-                        Console.WriteLine();
-                        Console.WriteLine($"Animal Id   : {animal.Id}");
-                        Console.WriteLine($"Animal Name : {animal.Name}");
-                        Console.WriteLine($"Animal Age  : {animal.Age}");
-
-                        break;
-                    }
-                }
-
-                if (!found)
-                {
                     Console.WriteLine();
-                    Console.WriteLine("Animal Not Found!");
+                    Console.WriteLine("Animal Found!");
+                    Console.WriteLine();
+                    Console.WriteLine("========== Animal Details ==========");
+                    Console.WriteLine();
+                    Console.WriteLine($"Animal Id   : {animal.Id}");
+                    Console.WriteLine($"Animal Name : {animal.Name}");
+                    Console.WriteLine($"Animal Age  : {animal.Age}");
+
+                    break;
                 }
             }
-            
+
+            if (!found)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Animal Not Found!");
+            }
+
+        }
+
+        public void SearchAnimalbyName()
+        {
+            string name = InputHelper.ReadString("Enter Animal Name: ");
+
+            bool found = false;
+
+            foreach(Animal animal in animals)
+            {
+                if(animal.Name == name)
+                {
+                    found = true;
+
+                    Console.WriteLine();
+                    Console.WriteLine("Animal Found!");
+                    Console.WriteLine();
+                    Console.WriteLine("========== Animal Details ==========");
+                    Console.WriteLine($"Animal Id   : {animal.Id}");
+                    Console.WriteLine($"Animal Name : {animal.Name}");
+                    Console.WriteLine($"Animal Age  : {animal.Age}");
+                    break;
+
+
+                }
+            }
+
+            if (!found)
+            {
+                Console.WriteLine();
+                Console.WriteLine("Animal Not Found");
+            }
+        }
         
-        public void UpdateAnimal()
+            
+                public void UpdateAnimal()
         {
             
-                int id = InputHelper.ReadInt("Enter Animal ypur want to Update: ");
+                int id = InputHelper.ReadInt("Enter Animal Id you  want to Update: ");
 
                 bool found = false;
 

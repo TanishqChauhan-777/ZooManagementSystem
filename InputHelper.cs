@@ -27,8 +27,21 @@ namespace ZooManagementSystem
 
         public static string ReadString(string message)
         {
-            Console.Write(message);
-            return Console.ReadLine() ?? "";
+            string input;
+
+            do
+            {
+                Console.Write(message);
+                input = Console.ReadLine() ?? "";
+
+                if (input.Trim() == "")
+                {
+                    Console.WriteLine("Input cannot be empty.");
+                }
+
+            } while (input.Trim() == "");
+
+            return input;
         }
     }
 }
