@@ -3,3 +3,5 @@
 1,Lion,5
 1,w,101
 1,Lion,5
+1,Simba,5
+1,peng,3

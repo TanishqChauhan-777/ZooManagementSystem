@@ -9,5 +9,10 @@ namespace ZooManagementSystem
         public string Name { get; set; } = string.Empty;
 
         public int Age { get; set; }
+
+        public Species Species { get; set; }
+        public Gender Gender { get; set; }
+
+
     }
 }

@@ -25,7 +25,7 @@ namespace ZooManagementSystem
             Console.WriteLine("========== Search Animal ==========");
             Console.WriteLine();
 
-            Console.WriteLine("1. Find Animal By Id ");
+            Console.WriteLine("1. Find Animal By Id");
             Console.WriteLine("2. Find Animal By Name");
             Console.WriteLine("3. Back");
             Console.WriteLine();
@@ -44,7 +44,7 @@ namespace ZooManagementSystem
 
                 ShowMenu();
  
-                    int choice = InputHelper.ReadInt("Enter Choice :");
+                    int choice = InputHelper.ReadInt("Enter Choice: ");
                     Console.WriteLine();
 
                     switch (choice)
@@ -60,7 +60,7 @@ namespace ZooManagementSystem
                         case 3:
                         ShowSearchMenu();
 
-                        int searchChoice = InputHelper.ReadInt("Enter Choice :");
+                        int searchChoice = InputHelper.ReadInt("Enter Choice: ");
 
                         switch (searchChoice)
                         {
@@ -71,10 +71,8 @@ namespace ZooManagementSystem
                             case 2:
                                 manager.SearchAnimalbyName();
                                 break;
-
                         }
-                        
-                            break;
+                        break;
 
                         case 4:
                             manager.UpdateAnimal();

@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Security.Cryptography.X509Certificates;
+using System.IO; 
 
 namespace ZooManagementSystem
 {
@@ -32,6 +31,14 @@ namespace ZooManagementSystem
                 return;
             }
 
+            Console.WriteLine();
+            Species species = InputHelper.ReadSpecies();
+
+            Console.WriteLine();
+            Gender gender = InputHelper.ReadGender();
+ 
+
+
             string name = InputHelper.ReadString("Enter Animal Name: ");
 
             int age;
@@ -49,8 +56,11 @@ namespace ZooManagementSystem
             Animal animalData = new Animal()
             {
                 Id = id,
+                Species = species,
+                Gender = gender,
                 Name = name,
                 Age = age
+
             };
 
             animals.Add(animalData);
@@ -65,7 +75,7 @@ namespace ZooManagementSystem
         {
             try
             {
-                string data = $"{animal.Id},{animal.Name},{animal.Age}";
+                string data = $"{animal.Id},{animal.Species},{animal.Gender},{animal.Name},{animal.Age}";
                 File.AppendAllText(filePath, data + Environment.NewLine);
             }
             catch (Exception ex)
@@ -108,6 +118,8 @@ namespace ZooManagementSystem
                         Animal animal = new Animal()
                         {
                             Id = Convert.ToInt32(data[0]),
+                            Species = Enum.Parse<Species>(data[3]),
+                            Gender = Enum.Parse<Gender>(data[2]),
                             Name = data[1],
                             Age = Convert.ToInt32(data[2])
                         };
@@ -135,9 +147,11 @@ namespace ZooManagementSystem
 
             foreach (Animal animal in animals)
             {
-                Console.WriteLine($"Animal Id   : {animal.Id}");
-                Console.WriteLine($"Animal Name : {animal.Name}");
-                Console.WriteLine($"Animal Age  : {animal.Age}");
+                Console.WriteLine($"Animal Id      : {animal.Id}");
+                Console.WriteLine($"Animal Species : {animal.Species}");
+                Console.WriteLine($"Animal Gender  : {animal.Gender}");
+                Console.WriteLine($"Animal Name    : {animal.Name}");
+                Console.WriteLine($"Animal Age     : {animal.Age}");
                 Console.WriteLine(new string('-', 35));
             }
         }
@@ -159,9 +173,11 @@ namespace ZooManagementSystem
                     Console.WriteLine();
                     Console.WriteLine("========== Animal Details ==========");
                     Console.WriteLine();
-                    Console.WriteLine($"Animal Id   : {animal.Id}");
-                    Console.WriteLine($"Animal Name : {animal.Name}");
-                    Console.WriteLine($"Animal Age  : {animal.Age}");
+                    Console.WriteLine($"Animal Id      : {animal.Id}");
+                    Console.WriteLine($"Animal Species : {animal.Species}");
+                    Console.WriteLine($"Animal Gender  : {animal.Gender}");
+                    Console.WriteLine($"Animal Name    : {animal.Name}");
+                    Console.WriteLine($"Animal Age     : {animal.Age}");
 
                     break;
                 }
@@ -191,9 +207,11 @@ namespace ZooManagementSystem
                     Console.WriteLine("Animal Found!");
                     Console.WriteLine();
                     Console.WriteLine("========== Animal Details ==========");
-                    Console.WriteLine($"Animal Id   : {animal.Id}");
-                    Console.WriteLine($"Animal Name : {animal.Name}");
-                    Console.WriteLine($"Animal Age  : {animal.Age}");
+                    Console.WriteLine($"Animal Id      : {animal.Id}");
+                    Console.WriteLine($"Animal Species : {animal.Species}");
+                    Console.WriteLine($"Animal Gender  : {animal.Gender}");
+                    Console.WriteLine($"Animal Name    : {animal.Name}");
+                    Console.WriteLine($"Animal Age     : {animal.Age}");
                     break;
 
 

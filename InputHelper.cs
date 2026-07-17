@@ -1,5 +1,4 @@
 ﻿using System;
-
 namespace ZooManagementSystem
 {
     internal class InputHelper
@@ -27,21 +26,97 @@ namespace ZooManagementSystem
 
         public static string ReadString(string message)
         {
-            string input;
+            Console.Write(message);
+            return Console.ReadLine() ?? "";
+        }
 
-            do
+        public static Gender ReadGender()
+        {
+            while (true)
             {
-                Console.Write(message);
-                input = Console.ReadLine() ?? "";
+                Console.WriteLine("========== Select Gender ==========");
+                Console.WriteLine();
+                Console.WriteLine("1. Male");
+                Console.WriteLine("2. Female");
+                Console.WriteLine();
 
-                if (input.Trim() == "")
+                int choice = ReadInt("Enter Choice: ");
+
+                switch (choice)
                 {
-                    Console.WriteLine("Input cannot be empty.");
+                    case 1:
+                        return Gender.Male;
+
+                    case 2:
+                        return Gender.Female;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("Invalid Choice! Please enter 1 or 2.");
+                        Console.WriteLine();
+                        break;
                 }
+            }
+        }
+        public static Species ReadSpecies()
+        {
+            while (true)
+            {
+                Console.WriteLine("========== Select Species ==========");
+                Console.WriteLine();
+                Console.WriteLine("1. Lion");
+                Console.WriteLine("2. Tiger");
+                Console.WriteLine("3. Elephant");
+                Console.WriteLine("4. Giraffe");
+                Console.WriteLine("5. Zebra");
+                Console.WriteLine("6. Bear");
+                Console.WriteLine("7. Monkey");
+                Console.WriteLine("8. Deer");
+                Console.WriteLine("9. Crocodile");
+                Console.WriteLine("10. Penguin");
+                Console.WriteLine();
 
-            } while (input.Trim() == "");
+                int choice = ReadInt("Enter Choice: ");
 
-            return input;
+                switch (choice)
+                {
+                    case 1:
+                        return Species.Lion;
+
+                    case 2:
+                        return Species.Tiger;
+
+                    case 3:
+                        return Species.Elephant;
+
+                    case 4:
+                        return Species.Giraffe;
+
+                    case 5:
+                        return Species.Zebra;
+
+                    case 6:
+                        return Species.Bear;
+
+                    case 7:
+                        return Species.Monkey;
+
+                    case 8:
+                        return Species.Deer;
+
+                    case 9:
+                        return Species.Crocodile;
+
+                    case 10:
+                        return Species.Penguin;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("Invalid Choice! Choice With Digits 1,2,3.....");
+                        Console.WriteLine();
+                        break;
+                }
+            }
         }
     }
 }
