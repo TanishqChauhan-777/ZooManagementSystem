@@ -13,6 +13,8 @@ namespace ZooManagementSystem
         public Species Species { get; set; }
         public Gender Gender { get; set; }
 
+        public HealthStatus HealthStatus { get; set; }
+
 
     }
 }

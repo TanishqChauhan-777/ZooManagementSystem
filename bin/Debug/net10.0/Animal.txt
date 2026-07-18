@@ -1,7 +1,2 @@
-1,Lion ,8
-1,Lion ,5
-1,Lion,5
-1,w,101
-1,Lion,5
-1,Simba,5
-1,peng,3
+1,Lion,Male,Wis,9UnderTreatment
+1,Lion,Male,simba,3,Healthy

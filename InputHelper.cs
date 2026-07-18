@@ -30,6 +30,42 @@ namespace ZooManagementSystem
             return Console.ReadLine() ?? "";
         }
 
+        public static HealthStatus ReadHealthStatus()
+        {
+            while (true)
+            {
+                Console.WriteLine("========== Select Health Status ==========");
+                Console.WriteLine();
+                Console.WriteLine("1. Healthy");
+                Console.WriteLine("2. Sick");
+                Console.WriteLine("3. Injured");
+                Console.WriteLine("4. Under Treatment");
+                Console.WriteLine();
+
+                int choice = ReadInt("Enter Choice: ");
+
+                switch (choice)
+                {
+                    case 1:
+                        return HealthStatus.Healthy;
+
+                    case 2:
+                        return HealthStatus.Sick;
+
+                    case 3:
+                        return HealthStatus.Injured;
+
+                    case 4:
+                        return HealthStatus.UnderTreatment;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("Invalid Choice! Please enter 1 or 2.");
+                        Console.WriteLine();
+                        break;
+                }
+            }
+        }
         public static Gender ReadGender()
         {
             while (true)

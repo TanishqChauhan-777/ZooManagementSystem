@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ZooManagementSystem")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4b5e7a3b4b14f52d9e68805ec31a25c259148fcb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e330e9b70fcc30efeb5e6509dad71a3cbd6666d1")]
 [assembly: System.Reflection.AssemblyProductAttribute("ZooManagementSystem")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ZooManagementSystem")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
