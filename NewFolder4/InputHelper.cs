@@ -66,6 +66,51 @@ namespace ZooManagementSystem
                 }
             }
         }
+
+        public static EmployeeRole ReadEmployeeRole()
+        {
+            while (true)
+            {
+                Console.WriteLine("========== Select Employee Role ==========");
+                Console.WriteLine();
+                Console.WriteLine("1. Zookeeper");
+                Console.WriteLine("2. Veterinarian");
+                Console.WriteLine("3. Manager");
+                Console.WriteLine("4. Cleaner");
+                Console.WriteLine("5. Security");
+                Console.WriteLine("6. Receptionist");
+                Console.WriteLine();
+
+                int choice = ReadInt("Enter Choice: ");
+
+                switch (choice)
+                {
+                    case 1:
+                        return EmployeeRole.Zookeeper;
+
+                    case 2:
+                        return EmployeeRole.Veterinarian;
+
+                    case 3:
+                        return EmployeeRole.Manager;
+
+                    case 4:
+                        return EmployeeRole.Cleaner;
+
+                    case 5: ;
+                        return EmployeeRole.Security;
+
+                    case 6:
+                        return EmployeeRole.Receptionist;
+
+                    default:
+                        Console.WriteLine();
+                        Console.WriteLine("Invalid Choice! Please enter 1 or 2.");
+                        Console.WriteLine();
+                        break;
+                }
+            }
+        }
         public static Gender ReadGender()
         {
             while (true)

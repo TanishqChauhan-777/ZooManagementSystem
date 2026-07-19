@@ -1,2 +1,0 @@
-1,Lion,Male,Wis,9UnderTreatment
-1,Lion,Male,simba,3,Healthy

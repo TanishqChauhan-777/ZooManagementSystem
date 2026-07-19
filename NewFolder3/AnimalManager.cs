@@ -81,8 +81,9 @@ namespace ZooManagementSystem
         }
 
         //=====  Save Animal =====
-        private void SaveAnimalToFile(Animal animal)
-        {
+        private void SaveAnimalToFile(Animal animal) { 
+
+             
             try
             {
                 string data = $"{animal.Id},{animal.Species},{animal.Gender},{animal.Name},{animal.Age},{animal.HealthStatus}";
@@ -240,7 +241,42 @@ namespace ZooManagementSystem
             }
         }
         
-            
+            public void SearchAnimalBySpecies()
+        {
+            Species species = InputHelper.ReadSpecies();
+
+            bool found = false;
+            int count = 0;
+
+            Console.WriteLine();
+            Console.WriteLine($"========== {species} Animal ==========");
+            Console.WriteLine();
+
+            foreach(Animal animal in animals)
+            {
+                if(animal.Species == species)
+                {
+                    found = true;
+                    count++;
+
+                    Console.WriteLine($"Animal Id            : {animal.Id}");
+                    Console.WriteLine($"Animal Species       : {animal.Species}");
+                    Console.WriteLine($"Animal Gender        : {animal.Gender}");
+                    Console.WriteLine($"Animal Name          : {animal.Name}");
+                    Console.WriteLine($"Animal Age           : {animal.Age}");
+                    Console.WriteLine($"Animal Health Status : {animal.HealthStatus}");
+                    Console.WriteLine(new string('-', 35));
+                }
+            }
+            if (!found)
+            {
+                Console.WriteLine($"No {species} Found.");
+            }
+            else
+            {
+                Console.WriteLine($"Total {species} : {count}");
+            }
+        }
                 public void UpdateAnimal()
         {
             

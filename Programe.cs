@@ -1,102 +1,235 @@
 ﻿using System;
-using System.IO;
-using System.Collections.Generic;
 
 namespace ZooManagementSystem
 {
     internal class Program
     {
-        static void ShowMenu()
+        static void ShowMainMenu()
         {
             Console.WriteLine("========== Zoo Management System ==========");
             Console.WriteLine();
+            Console.WriteLine("1. Animal Management");
+            Console.WriteLine("2. Employee Management");
+            Console.WriteLine("3. Exit");
+            Console.WriteLine();
+        }
+
+        static void ShowAnimalMenu()
+        {
+            Console.WriteLine("========== Animal Management ==========");
+            Console.WriteLine();
+
             Console.WriteLine("1. Add Animal");
             Console.WriteLine("2. Display Animals");
             Console.WriteLine("3. Search Animal");
             Console.WriteLine("4. Update Animal");
             Console.WriteLine("5. Delete Animal");
-            Console.WriteLine("6. Exit");
-            Console.WriteLine();
-            }
+            Console.WriteLine("6. Back");
 
-        static void ShowSearchMenu()
-        {
-
-            Console.WriteLine("========== Search Animal ==========");
-            Console.WriteLine();
-
-            Console.WriteLine("1. Find Animal By Id");
-            Console.WriteLine("2. Find Animal By Name");
-            Console.WriteLine("3. Back");
             Console.WriteLine();
         }
 
+        static void ShowEmployeeMenu()
+        {
+            Console.WriteLine("========== Employee Management ==========");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Add Employee");
+            Console.WriteLine("2. Display Employees");
+            Console.WriteLine("3. Search Employee");
+            Console.WriteLine("4. Update Employee");
+            Console.WriteLine("5. Delete Employee");
+            Console.WriteLine("6. Back");
+
+            Console.WriteLine();
+        }
+
+        static void ShowAnimalSearchMenu()
+        {
+            Console.WriteLine("========== Search Animal ==========");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Search Animal By Id");
+            Console.WriteLine("2. Search Animals By Species");
+            Console.WriteLine("3. Back");
+
+            Console.WriteLine();
+        }
+
+        static void ShowEmployeeSearchMenu()
+        {
+            Console.WriteLine("========== Search Employee ==========");
+            Console.WriteLine();
+
+            Console.WriteLine("1. Search Employee By Id");
+            Console.WriteLine("2. Search Employee By Role");
+            Console.WriteLine("3. Back");
+
+            Console.WriteLine();
+        }
 
         static void Main(string[] args)
         {
-            AnimalManager manager = new AnimalManager();
-
-
+            AnimalManager animalManager = new AnimalManager();
+            EmployeeManager employeeManager = new EmployeeManager();
 
             while (true)
             {
                 Console.Clear();
 
-                ShowMenu();
- 
-                    int choice = InputHelper.ReadInt("Enter Choice: ");
-                    Console.WriteLine();
+                ShowMainMenu();
 
-                    switch (choice)
-                    {
-                        case 1:
-                            manager.AddAnimal();
-                            break;
+                int mainChoice = InputHelper.ReadInt("Enter Choice: ");
 
-                        case 2:
-                            manager.DisplayAnimals();
-                            break;
+                switch (mainChoice)
+                {
+                    case 1:
 
-                        case 3:
-                        ShowSearchMenu();
-
-                        int searchChoice = InputHelper.ReadInt("Enter Choice: ");
-
-                        switch (searchChoice)
+                        while (true)
                         {
-                            case 1:
-                                manager.SearchAnimalByID();
-                                break;
+                            Console.Clear();
 
-                            case 2:
-                                manager.SearchAnimalbyName();
-                                break;
+                            ShowAnimalMenu();
+
+                            int animalChoice = InputHelper.ReadInt("Enter Choice: ");
+
+                            switch (animalChoice)
+                            {
+                                case 1:
+                                    animalManager.AddAnimal();
+                                    break;
+
+                                case 2:
+                                    animalManager.DisplayAnimals();
+                                    break;
+
+                                case 3:
+
+                                    ShowAnimalSearchMenu();
+
+                                    int animalSearchChoice = InputHelper.ReadInt("Enter Choice: ");
+
+                                    switch (animalSearchChoice)
+                                    {
+                                        case 1:
+                                            animalManager.SearchAnimalByID();
+                                            break;
+
+                                        case 2:
+                                            animalManager.SearchAnimalBySpecies();
+                                            break;
+
+                                        case 3:
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Invalid Choice!");
+                                            break;
+                                    }
+
+                                    break;
+
+                                case 4:
+                                    animalManager.UpdateAnimal();
+                                    break;
+
+                                case 5:
+                                    animalManager.DeleteAnimal();
+                                    break;
+
+                                case 6:
+                                    goto MainMenu;
+
+                                default:
+                                    Console.WriteLine("Invalid Choice!");
+                                    break;
+                            }
+
+                            Console.WriteLine();
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
                         }
+
+                    case 2:
+
+                        while (true)
+                        {
+                            Console.Clear();
+
+                            ShowEmployeeMenu();
+
+                            int employeeChoice = InputHelper.ReadInt("Enter Choice: ");
+
+                            switch (employeeChoice)
+                            {
+                                case 1:
+                                    employeeManager.AddEmployee();
+                                    break;
+
+                                case 2:
+                                    employeeManager.DisplayAllEmployee();
+                                    break;
+
+                                case 3:
+
+                                    ShowEmployeeSearchMenu();
+
+                                    int employeeSearchChoice = InputHelper.ReadInt("Enter Choice: ");
+
+                                    switch (employeeSearchChoice)
+                                    {
+                                        case 1:
+                                            employeeManager.SearchEmployeeByID();
+                                            break;
+
+                                        case 2:
+                                            employeeManager.SearchEmployeeByRole();
+                                            break;
+
+                                        case 3:
+                                            break;
+
+                                        default:
+                                            Console.WriteLine("Invalid Choice!");
+                                            break;
+                                    }
+
+                                    break;
+
+                                case 4:
+                                    employeeManager.UpdateEmployee();
+                                    break;
+
+                                case 5:
+                                    employeeManager.DeleteEmployee();
+                                    break;
+
+                                case 6:
+                                    goto MainMenu;
+
+                                default:
+                                    Console.WriteLine("Invalid Choice!");
+                                    break;
+                            }
+
+                            Console.WriteLine();
+                            Console.WriteLine("Press any key to continue...");
+                            Console.ReadKey();
+                        }
+
+                    case 3:
+                        Console.WriteLine();
+                        Console.WriteLine("Thank You For Using Zoo Management System!");
+                        return;
+
+                    default:
+                        Console.WriteLine("Invalid Choice!");
+                        Console.ReadKey();
                         break;
+                }
 
-                        case 4:
-                            manager.UpdateAnimal();
-                            break;
-
-                        case 5:
-                            manager.DeleteAnimal();
-                            break;
-
-                        case 6:
-                            Console.WriteLine("Thank You for Using Zoo Management System!");
-                            return;
-
-                        default:
-                            Console.WriteLine("Invalid Choice!");
-                            break;
-                    }
-                
-            
-             
-                Console.WriteLine();
-                Console.WriteLine("Press any key to continue...");
-                Console.ReadKey();
+            MainMenu:;
             }
         }
     }
-    }
+}
