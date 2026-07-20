@@ -286,11 +286,13 @@ namespace ZooManagementSystem
                 Console.WriteLine("8. Exit & Save");
 
                 int choice = InputHelper.ReadInt("Enter Choice: ");
+                Console.WriteLine();
+
 
                 switch (choice) 
                 {
                     case 1:                        
-                           string newName = InputHelper.ReadString("Enter New Name");
+                           string newName = InputHelper.ReadString("Enter New Name: ");
                         employeeToUpdate.Name = newName;
                         Console.WriteLine();
                         Console.WriteLine("Name Updated Successfully!");
@@ -298,21 +300,10 @@ namespace ZooManagementSystem
 
                     case 2:
 
-                        while (true)
-                        {
-                            int newAge = InputHelper.ReadInt("Enter New Age: ");
+                        employeeToUpdate.Age = InputHelper.ReadAge();
 
-                            if (newAge >= 0 && newAge <= 100)
-                            {
-                                employeeToUpdate.Age = newAge;
-
-                                Console.WriteLine();
-                                Console.WriteLine("Age Updated Successfully!");
-                                break;
-                            }
-
-                            Console.WriteLine("Enter Valid Age");
-                        }
+                        Console.WriteLine();
+                        Console.WriteLine("Age Updated Successfully!");
 
                         break;
 
@@ -337,10 +328,7 @@ namespace ZooManagementSystem
                     
                     case 5:
                         Console.WriteLine();
-
-                        employeeToUpdate.JoiningDate = DateTime.Parse(
-                            InputHelper.ReadString("Enter New Joining Date (dd/MM/yyyy): ")
-                        );
+                        employeeToUpdate.JoiningDate = InputHelper.ReadJoiningDate();
 
                         Console.WriteLine();
                         Console.WriteLine("Joining Date Updated Successfully!");
@@ -348,45 +336,21 @@ namespace ZooManagementSystem
 
                     case 6:
                         {
-                            double newSalary;
+                            Console.WriteLine();
+                            employeeToUpdate.Salary = InputHelper.ReadSalary();
 
-                            while (true)
-                            {
-                                Console.Write("Enter New Salary: ");
-
-                                if (double.TryParse(Console.ReadLine(), out newSalary) && newSalary > 0)
-                                {
-                                    employeeToUpdate.Salary = newSalary;
-
-                                    Console.WriteLine();
-                                    Console.WriteLine("Salary Updated Successfully!");
-                                    break;
-                                }
-
-                                Console.WriteLine("Invalid Salary! Please Try Again.");
-                            }
-
+                            Console.WriteLine();
+                            Console.WriteLine("Salary Updated Successfully!");
                             break;
                         }
 
                     case 7:
                         {
-                            while (true)
-                            {
-                                string newPhoneNumber = InputHelper.ReadString("Enter New Phone Number: ");
+                            Console.WriteLine();
+                            employeeToUpdate.PhoneNumber = InputHelper.ReadPhoneNumber();
 
-                                if (newPhoneNumber.Length == 10 && long.TryParse(newPhoneNumber, out _))
-                                {
-                                    employeeToUpdate.PhoneNumber = newPhoneNumber;
-
-                                    Console.WriteLine();
-                                    Console.WriteLine("Phone Number Updated Successfully!");
-                                    break;
-                                }
-
-                                Console.WriteLine("Invalid Phone Number! Please enter a 10-digit number.");
-                            }
-
+                            Console.WriteLine();
+                            Console.WriteLine("Phone Number Updated Successfully!");
                             break;
                         }
 

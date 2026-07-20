@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 namespace ZooManagementSystem
 {
     internal class InputHelper
@@ -97,7 +98,7 @@ namespace ZooManagementSystem
                     case 4:
                         return EmployeeRole.Cleaner;
 
-                    case 5: ;
+                    case 5: 
                         return EmployeeRole.Security;
 
                     case 6:
@@ -105,7 +106,7 @@ namespace ZooManagementSystem
 
                     default:
                         Console.WriteLine();
-                        Console.WriteLine("Invalid Choice! Please enter 1 or 2.");
+                        Console.WriteLine("Invalid Choice! Please Try Again");
                         Console.WriteLine();
                         break;
                 }
@@ -197,6 +198,80 @@ namespace ZooManagementSystem
                         Console.WriteLine();
                         break;
                 }
+            }
+        }
+
+        public static int ReadAge()
+        {
+            while (true)
+            {
+                int age = InputHelper.ReadInt("Enter Your Age: ");
+
+                if(age >= 0 && age <= 100)
+                {
+                    return age;
+                }
+                Console.WriteLine("Invalid Age! Please Try Again.");
+            }
+
+          
+        }
+        public static double ReadSalary()
+        {
+            while (true)
+            {
+                Console.Write("Enter Salary: ");
+
+                if (double.TryParse(Console.ReadLine(), out double salary) && salary > 0)
+                {
+                    return salary;
+                }
+
+                Console.WriteLine("Invalid Salary! Please Try Again.");
+            }
+        }
+
+        public static DateTime ReadJoiningDate()
+        {
+            while (true)
+            {
+                Console.Write("Enter Joining Date (dd/MM/yyyy): ");
+
+                string input = Console.ReadLine();
+
+                if (DateTime.TryParseExact(
+                    input,
+                    "dd/MM/yyyy",
+                    CultureInfo.InvariantCulture,
+                    DateTimeStyles.None,
+                    out DateTime joiningDate))
+                {
+                    return joiningDate;
+                }
+
+                Console.WriteLine("Invalid Date! Please use dd/MM/yyyy format.");
+            }
+        }
+
+        public static string ReadPhoneNumber()
+        {
+            while (true)
+            {
+                string phone = ReadString("Enter Phone Number: ").Trim();
+
+                if (phone.Length != 10)
+                {
+                    Console.WriteLine("Phone Number must contain exactly 10 digits.");
+                    continue;
+                }
+
+                if (!long.TryParse(phone, out _))
+                {
+                    Console.WriteLine("Phone Number should contain digits only.");
+                    continue;
+                }
+
+                return phone;
             }
         }
     }

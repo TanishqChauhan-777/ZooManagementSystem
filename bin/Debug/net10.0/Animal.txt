@@ -1,0 +1,2 @@
+1,Lion,Male,Simba,5,Healthy
+3,Elephant,Female,chico,7,Healthy

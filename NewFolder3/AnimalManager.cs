@@ -20,6 +20,7 @@ namespace ZooManagementSystem
         public void AddAnimal()
         {
             int id = InputHelper.ReadInt("Enter Animal Id: ");
+            Console.WriteLine();
 
             bool found = false;
 
@@ -47,20 +48,13 @@ namespace ZooManagementSystem
 
             Console.WriteLine();
             string name = InputHelper.ReadString("Enter Animal Name: ");
+            Console.WriteLine();
 
-            int age;
-            do
-            {
-                 age = InputHelper.ReadInt("Enter Animal Age: ");
+            Console.WriteLine();
+            int age = InputHelper.ReadAge();
+            Console.WriteLine();
 
-                if (age < 0 || age > 100)
-                {
 
-                    Console.WriteLine("Enter a Valid Age");
-                }
-            } while (age < 0 || age > 100);
-
-            
             Animal animalData = new Animal()
             {
                 Id = id,
@@ -80,7 +74,8 @@ namespace ZooManagementSystem
             Console.WriteLine("Animal Added Successfully!");
         }
 
-        //=====  Save Animal =====
+        //=====  Save Animal to File =====
+
         private void SaveAnimalToFile(Animal animal) { 
 
              
@@ -95,7 +90,8 @@ namespace ZooManagementSystem
                 Console.WriteLine("File Error: " + ex.Message);
             }
         }
-
+         
+        // ===== Save All Animal To File After Deletion Of Object =====
         private void SaveAllAnimalsToFile()
         {
             try
@@ -113,6 +109,7 @@ namespace ZooManagementSystem
             }
         }
 
+        // ===== Load Animals From File =====
         private void LoadAnimalsFromFile()
         {
             try
@@ -147,6 +144,7 @@ namespace ZooManagementSystem
             }
         }
 
+        // ===== Display All Animals =====
         public void DisplayAnimals()
         {
             Console.WriteLine("========== Animal List ==========");
@@ -169,10 +167,13 @@ namespace ZooManagementSystem
                 Console.WriteLine(new string('-', 35));
             }
         }
+
+        // ===== Search Animal By ID =====
         public void SearchAnimalByID()
         {
 
             int id = InputHelper.ReadInt("Enter Animal Id: ");
+            Console.WriteLine();
 
             bool found = false;
 
@@ -206,9 +207,11 @@ namespace ZooManagementSystem
 
         }
 
+        // ===== Seach Animal By Name =====
         public void SearchAnimalbyName()
         {
             string name = InputHelper.ReadString("Enter Animal Name: ");
+            Console.WriteLine();
 
             bool found = false;
 
@@ -241,6 +244,8 @@ namespace ZooManagementSystem
             }
         }
         
+
+        // ===== Search Animal By Species =====
             public void SearchAnimalBySpecies()
         {
             Species species = InputHelper.ReadSpecies();
@@ -277,6 +282,8 @@ namespace ZooManagementSystem
                 Console.WriteLine($"Total {species} : {count}");
             }
         }
+
+        // ===== Update Animals =====
                 public void UpdateAnimal()
         {
             
@@ -291,8 +298,10 @@ namespace ZooManagementSystem
                         found = true;
 
                     string newName = InputHelper.ReadString("Enter New Name: ");
+                    Console.WriteLine();
 
-                    int newAge = InputHelper.ReadInt("Enter New Age: ");
+                    int newAge = InputHelper.ReadAge();
+                    Console.WriteLine();
 
                     animal.HealthStatus = InputHelper.ReadHealthStatus();
 
@@ -312,13 +321,15 @@ namespace ZooManagementSystem
                 {
                     Console.WriteLine();
                     Console.WriteLine("Animal Not Found!");
-                }
+                Console.WriteLine();
+            }
             }
      
         public void DeleteAnimal()
         {
 
             int id = InputHelper.ReadInt("Enter Animal Id you want to Delete: ");
+            Console.WriteLine();
 
             Animal animalToDelete = null;
 
